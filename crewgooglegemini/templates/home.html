@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>แอ่วเหนือ</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: black;
+            color: white;
+            text-align: center;
+        }
+
+        .hero {
+            position: relative;
+            background: url("{{ url_for('static', filename='img/bg.jpg') }}") no-repeat center bottom/cover;
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+        }
+
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: bold;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto 20px;
+        }
+        
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0));
+            z-index: 0;
+        }
+
+        .hero h1,
+        .hero p,
+        .hero .button {
+            position: relative;
+            z-index: 1;
+        }
+
+        .carousel {
+            position: relative;
+            width: 80vw;
+            max-width: 1200px;
+            overflow: hidden;
+            margin: 20px auto;
+        }
+
+        .carousel-track {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .carousel-item {
+            flex: 0 0 calc(100% / 3);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            padding: 10px;
+            filter: grayscale(100%);
+            transition: filter 0.5s ease;
+            height: 150px;
+            width: 50px;
+        }
+
+        .carousel-item img {
+            width: 100%;
+            max-height: 300px;
+            border-radius: 15px;
+            object-fit: contain;
+        }
+
+        .carousel-item.active {
+            filter: grayscale(0%);
+        }
+
+
+        .province-name {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            padding: 5px 15px;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        .scrollbar-indicator {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+
+        .scrollbar-item {
+            width: 20px;
+            height: 5px;
+            margin: 0 5px;
+            background-color: rgba(255, 255, 255, 0.3);
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            cursor: pointer;
+        }
+
+        .scrollbar-item.active {
+            background-color: rgba(255, 255, 255, 1);
+        }
+
+        .button {
+            display: inline-block;
+            padding: 15px 30px;
+            background-color: #ffcc00;
+            color: #000;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: 2px solid #ffcc00;
+            margin-top: 20px;
+        }
+    
+        .button:hover {
+            background-color: transparent;
+            color: #ffcc00;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 204, 0, 0.3);
+        }
+
+        /* สำหรับมุมมองมือถือ */
+        @media screen and (max-width: 768px) {
+            .carousel {
+                width: 95vw;
+            }
+
+            .carousel-track {
+                width: calc(100% * 5);
+            }
+
+            .carousel-item {
+                flex: 0 0 100%;
+            }
+
+            .carousel-item img {
+                max-height: 200px;
+                /* ปรับขนาดให้เหมาะสม */
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="hero">
+        <h1>วางแผนแอ่วเหนือ</h1>
+        <p>เว็บนี้จัดทำขึ้นเพื่อแนะนำแผนการท่องเที่ยวในภาคเหนือ ครอบคลุม 5 จังหวัด ได้แก่ เชียงราย เชียงใหม่ น่าน
+            แม่ฮ่องสอน และเพชรบูรณ์ โดยรวบรวมข้อมูลสถานที่ท่องเที่ยวที่น่าสนใจ เส้นทางท่องเที่ยว แนะนำที่พัก ร้านอาหาร
+            และกิจกรรมต่างๆ เพื่อช่วยให้นักเดินทางวางแผนทริปได้สะดวกและสนุกยิ่งขึ้น</p>
+        <a href="{{ url_for('index') }}" class="button">เริ่มแผน</a>
+    </div>
+
+    <div class="carousel">
+        <div class="carousel-track">
+            <div class="carousel-item"><img src="{{ url_for('static', filename='img/rai.jpg') }}">
+                <div class="province-name">เชียงราย</div>
+            </div>
+            <div class="carousel-item"><img src="{{ url_for('static', filename='img/mai.jpg') }}">
+                <div class="province-name">เชียงใหม่</div>
+            </div>
+            <div class="carousel-item"><img src="{{ url_for('static', filename='img/nan.jpg') }}">
+                <div class="province-name">น่าน</div>
+            </div>
+            <div class="carousel-item"><img src="{{ url_for('static', filename='img/mae.jpg') }}">
+                <div class="province-name">แม่ฮ่องสอน</div>
+            </div>
+            <div class="carousel-item"><img src="{{ url_for('static', filename='img/pet.jpg') }}">
+                <div class="province-name">เพชรบูรณ์</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="scrollbar-indicator">
+        <div class="scrollbar-item"></div>
+        <div class="scrollbar-item"></div>
+        <div class="scrollbar-item"></div>
+        <div class="scrollbar-item"></div>
+        <div class="scrollbar-item"></div>
+    </div>
+    <script>
+        const track = document.querySelector('.carousel-track');
+        const items = document.querySelectorAll('.carousel-item');
+        const scrollbarItems = document.querySelectorAll('.scrollbar-item');
+        let index = 0;
+        const totalItems = items.length;
+        let itemsPerView = window.innerWidth < 768 ? 1 : 3; // ถ้าเป็นมือถือ ให้แสดงทีละ 1 ภาพ
+
+        function updateCarousel() {
+            let moveAmount = (100 / itemsPerView) * index;
+            track.style.transform = `translateX(-${moveAmount}%)`;
+
+            items.forEach((item, i) => {
+                item.classList.toggle('active', i % totalItems === index % totalItems);
+            });
+
+            scrollbarItems.forEach((item, i) => {
+                item.classList.toggle('active', i % totalItems === index % totalItems);
+            });
+        }
+
+        // ตั้งค่า interval สำหรับการเปลี่ยนภาพอัตโนมัติ
+        let autoSlide = setInterval(() => {
+            index = (index + 1) % totalItems;
+            updateCarousel();
+        }, 3000);
+
+        // หยุด auto slide เมื่อนำเมาส์ไปชี้ (เฉพาะเดสก์ท็อป)
+        track.addEventListener("mouseenter", () => clearInterval(autoSlide));
+        track.addEventListener("mouseleave", () => {
+            autoSlide = setInterval(() => {
+                index = (index + 1) % totalItems;
+                updateCarousel();
+            }, 3000);
+        });
+
+        // ทำให้ scrollbar สามารถคลิกเพื่อเลื่อนได้
+        scrollbarItems.forEach((item, i) => {
+            item.addEventListener('click', () => {
+                index = i;
+                updateCarousel();
+            });
+        });
+
+        // ปรับ itemsPerView ใหม่เมื่อขนาดหน้าจอเปลี่ยน
+        window.addEventListener('resize', () => {
+            itemsPerView = window.innerWidth < 768 ? 1 : 3;
+            updateCarousel();
+        });
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,164 @@
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Bebas Neue", serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #222222;
+  }
+  
+  .header {
+    position: relative;
+    width: 100%;
+    height: 200px;
+  }
+  
+  .header-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    text-shadow: 6px 6px 8px rgba(0, 0, 0, 0.9);
+  }
+  
+  .overlay h1 {
+    margin: 0;
+    font-size: 2.5em;
+    letter-spacing: 2px;
+    font-weight: bold;
+    color: #ffcc00;
+    font-family: "Bebas Neue", serif;
+  }
+  
+  .overlay p {
+    margin: 5px 0 0;
+    font-size: 1.3em;
+    font-weight: 600;
+    color: #fff;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.9);
+    font-family: "Bebas Neue", serif;
+  }
+  
+  .back-arrow {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    cursor: pointer;
+  }
+  
+  .back-arrow img {
+    width: 30px;
+    height: auto;
+    display: block;
+    transition: transform 0.2s ease;
+    margin: 10px;
+    padding: 5px;
+  }
+  
+  .back-arrow img:hover {
+    transform: scale(1.1);
+  }
+  
+  .car-icon {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    width: 50px;
+    height: 30px;
+    background: url("../img/car-icon.png") no-repeat center center;
+    background-size: contain;
+    animation: moveCar 3s infinite alternate ease-in-out;
+  }
+  
+  @keyframes moveCar {
+    0% {
+      transform: translateX(0);
+    }
+    50% {
+      transform: translateX(-20px);
+    }
+    100% {
+      transform: translateX(20px);
+    }
+  }
+  
+  .content {
+    width: 80%;
+    margin: 20px;
+    max-height: 70vh; /* เพิ่มความสูงสูงสุด */
+    overflow-y: auto;
+    padding: 30px;
+    background: linear-gradient(145deg, #ffffff, #e6e6e6);
+    background-color: #686868;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+    text-align: center;
+    color: #333;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .content:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+  }
+  
+  .content p {
+    margin: 0;
+    font-weight: bold;
+    letter-spacing: 1px;
+  }
+
+  .content pre {
+    white-space: pre-wrap; /* ให้ข้อความขึ้นบรรทัดใหม่อัตโนมัติ */
+    word-wrap: break-word; /* ตัดคำเมื่อเกินขอบ */
+    max-width: 100%; /* จำกัดความกว้างสูงสุด */
+    margin: 0;
+    padding: 15px;
+    color: #1e1e1e; /* สีข้อความ */
+    font-family: 'IBM Plex Sans Thai', sans-serif; /* เปลี่ยนฟอนต์ */
+    font-size: 16px; /* ปรับขนาดฟอนต์ */
+    line-height: 1.6; /* ระยะห่างระหว่างบรรทัด */
+    text-align: left;
+}
+  
+  @media (max-width: 768px) {
+    .overlay h1 {
+      font-size: 2em;
+    }
+    .overlay p {
+      font-size: 1em;
+    }
+    .content {
+      width: 90%;
+      margin: 20px;
+      padding: 30px;
+      background: url("../img/background 1.jpg") no-repeat center center;
+      background-color: #e6e6e6;
+      background-size: cover;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      border-radius: 15px;
+      font-size: 1.5em;
+      text-align: center;
+      color: #222222;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .content pre {
+      font-size: 14px; /* ลดขนาดตัวอักษรในหน้าจอมือถือ */
+  }
+  }
