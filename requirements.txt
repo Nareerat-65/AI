@@ -1,6 +1,6 @@
 crewai
 langchain_google_genai #google gemini models
 load_dotenv
-
+3.11.9
 
 crewai_tools
